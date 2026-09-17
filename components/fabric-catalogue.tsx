@@ -46,8 +46,8 @@ export default function FabricCatalogue({ fabrics }: { fabrics: Fabric[] }) {
           return (
             <article className="productCard" key={fabric.slug}>
               <div className="productVisual">
-                {fabric.imageUrl ? <img className="productImage" src={fabric.imageUrl} alt={fabric.imageAlt || fabric.name} loading="lazy" onError={(event) => { event.currentTarget.style.display = "none"; }} /> : null}
-                {fabric.imageUrl ? <div className="productVisualShade" aria-hidden="true" /> : null}
+                {fabric.imageUrl ? <img className="productImage" src={fabric.imageUrl} alt={fabric.imageAlt || fabric.name} loading="lazy" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.88 }} onError={(event) => { event.currentTarget.style.display = "none"; }} /> : null}
+                {fabric.imageUrl ? <div className="productVisualShade" aria-hidden="true" style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(23,63,75,0.08), rgba(23,63,75,0.68))" }} /> : null}
                 <span>{String(index + 1).padStart(2, "0")}</span>
                 <strong>{fabric.name}</strong>
               </div>
