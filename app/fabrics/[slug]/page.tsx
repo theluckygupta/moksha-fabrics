@@ -48,9 +48,10 @@ export default async function FabricPage({ params }: Props) {
       <section className="section">
         <div className="container detailGrid">
           <div>
-            <div className="detailImageFrame">
-              {fabric.imageUrl ? <img src={fabric.imageUrl} alt={fabric.imageAlt || fabric.name} className="detailImage" onError={(event) => { event.currentTarget.style.display = "none"; }} /> : null}
-              <span className="detailImageLabel">Reference imagery</span>
+            <div style={{ position: "relative", minHeight: "420px", overflow: "hidden", background: "linear-gradient(145deg,#d8f1f3,#8ddce5 55%,#245967)", border: "1px solid var(--line)" }}>
+              {fabric.imageUrl ? <img src={fabric.imageUrl} alt={fabric.imageAlt || fabric.name} style={{ display: "block", position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} onError={(event) => { event.currentTarget.style.display = "none"; }} /> : null}
+              <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(23,63,75,0.04), rgba(23,63,75,0.62))" }} />
+              <span style={{ position: "absolute", left: "20px", bottom: "18px", color: "white", fontSize: "10px", fontWeight: 700, letterSpacing: ".16em", textTransform: "uppercase" }}>Reference imagery</span>
             </div>
             <p className="mutedSmall" style={{ marginTop: "10px" }}>Demo/reference image — replace with actual Moksha Fabrics photography before publication as a product image.</p>
           </div>
