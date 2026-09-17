@@ -45,9 +45,22 @@ export default async function FabricPage({ params }: Props) {
       </section>
 
       <section className="section">
-        <div className="detailGrid">
-          <div><p className="eyebrow">Typical application</p><h2>Built around the end use.</h2><p className="lead">{fabric.application}</p></div>
-          <div className="specPanel"><p className="eyebrow">Sourcing notes</p>{fabric.specifications.map((item) => <div className="specRow" key={item}><span>{item}</span><span>{fabric.status === "Indicative specification" ? "Indicative" : "Catalogue"}</span></div>)}</div>
+        <div className="container detailGrid">
+          <div>
+            {fabric.imageUrl ? (
+              <img src={fabric.imageUrl} alt={fabric.imageAlt || fabric.name} style={{ display: "block", width: "100%", height: "420px", objectFit: "cover", background: "#e7f7f8" }} />
+            ) : null}
+            <p className="mutedSmall" style={{ marginTop: "10px" }}>Demo/reference image — replace with actual Moksha Fabrics photography.</p>
+          </div>
+          <div>
+            <p className="eyebrow">Typical application</p>
+            <h2>Built around the end use.</h2>
+            <p className="lead">{fabric.application}</p>
+            <div className="specPanel" style={{ marginTop: "35px" }}>
+              <p className="eyebrow">Sourcing notes</p>
+              {fabric.specifications.map((item) => <div className="specRow" key={item}><span>{item}</span><span>{fabric.status === "Indicative specification" ? "Indicative" : "Catalogue"}</span></div>)}
+            </div>
+          </div>
         </div>
       </section>
 
