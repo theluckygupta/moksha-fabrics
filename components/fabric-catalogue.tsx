@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 import type { Fabric } from "@/lib/fabrics";
 
+const whatsappNumber = "919783123977";
+
 export default function FabricCatalogue({ fabrics }: { fabrics: Fabric[] }) {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("All");
@@ -27,68 +29,41 @@ export default function FabricCatalogue({ fabrics }: { fabrics: Fabric[] }) {
       <div className="catalogueTools" aria-label="Catalogue filters">
         <label className="catalogueSearch">
           <span className="srOnly">Search fabrics</span>
-          <input
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
-            placeholder="Search fabric, category or application"
-            type="search"
-          />
+          <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search fabric, category or application" type="search" />
         </label>
         <div className="filterList" role="group" aria-label="Filter by category">
           {categories.map((item) => (
-            <button
-              className={category === item ? "filterButton active" : "filterButton"}
-              key={item}
-              onClick={() => setCategory(item)}
-              type="button"
-            >
-              {item}
-            </button>
+            <button className={category === item ? "filterButton active" : "filterButton"} key={item} onClick={() => setCategory(item)} type="button">{item}</button>
           ))}
         </div>
       </div>
 
-      <div className="catalogueCount">
-        <span>{filtered.length} {filtered.length === 1 ? "quality" : "qualities"}</span>
-        <span>Specifications confirmed per lot before order</span>
-      </div>
+      <div className="catalogueCount"><span>{filtered.length} {filtered.length === 1 ? "quality" : "qualities"}</span><span>Specifications confirmed per lot before order</span></div>
 
       <div className="productGrid">
-        {filtered.map((fabric, index) => (
-          <article className="productCard" key={fabric.slug}>
-            <div className="productVisual" aria-hidden="true">
-              <span>{String(index + 1).padStart(2, "0")}</span>
-              <strong>{fabric.name}</strong>
-            </div>
-            <div className="productBody">
-              <p className="productCategory">{fabric.category}</p>
-              <h2>{fabric.name}</h2>
-              <p>{fabric.description}</p>
-              <div className="productMeta">
-                <span>Application</span>
-                <strong>{fabric.application}</strong>
+        {filtered.map((fabric, index) => {
+          const whatsappText = `Hello Moksha Fabrics, I would like to enquire about ${fabric.name}. Please share availability, exact specifications and pricing.`;
+          return (
+            <article className="productCard" key={fabric.slug}>
+              <div className="productVisual" aria-hidden="true"><span>{String(index + 1).padStart(2, "0")}</span><strong>{fabric.name}</strong></div>
+              <div className="productBody">
+                <p className="productCategory">{fabric.category}</p>
+                <h2>{fabric.name}</h2>
+                <p>{fabric.description}</p>
+                <div className="productMeta"><span>Application</span><strong>{fabric.application}</strong></div>
+                <div className="productTags">{fabric.specifications.slice(0, 3).map((specification) => <span key={specification}>{specification}</span>)}</div>
+                <div className="productActions">
+                  <Link className="productLink" href={`/fabrics/${fabric.slug}`}>View details <span>↗</span></Link>
+                  <a className="whatsappLink" href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappText)}`} target="_blank" rel="noreferrer">WhatsApp enquiry</a>
+                </div>
               </div>
-              <div className="productTags">
-                {fabric.specifications.slice(0, 3).map((specification) => (
-                  <span key={specification}>{specification}</span>
-                ))}
-              </div>
-              <Link className="productLink" href={`/fabrics/${fabric.slug}`}>
-                View quality details <span>↗</span>
-              </Link>
-            </div>
-          </article>
-        ))}
+            </article>
+          );
+        })}
       </div>
 
       {filtered.length === 0 && (
-        <div className="emptyState">
-          <h2>No matching fabric found.</h2>
-          <p>Try another fabric name, category or application.</p>
-          <button className="filterButton active" onClick={() => { setQuery(""); setCategory("All"); }} type="button">
-            Reset filters
-          </button>
-        </div>
+        <div className="emptyState"><h2>No matching fabric found.</h2><p>Try another fabric name, category or application.</p><button className="filterButton active" onClick={() => { setQuery(""); setCategory("All"); }} type="button">Reset filters</button></div>
       )}
     </div>
   );
