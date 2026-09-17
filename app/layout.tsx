@@ -59,6 +59,12 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             <div>
               <strong>Moksha Fabrics</strong>
               <span>Textile fabrics · Surat, Gujarat, India</span>
+              <nav className="footerNav" aria-label="Footer navigation">
+                <a href="/fabrics">Fabrics</a>
+                <a href="/about">About</a>
+                <a href="/faq">FAQ</a>
+                <a href="/contact">Contact</a>
+              </nav>
             </div>
             <div className="footerContact">
               <a href="tel:+919783123977">+91 97831 23977</a>
