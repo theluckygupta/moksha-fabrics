@@ -27,18 +27,30 @@ export default async function FabricPage({ params }: Props) {
 
   const schema = {
     "@context": "https://schema.org",
-    "@type": "CollectionPage",
-    name: fabric.name,
-    description: fabric.description,
-    about: { "@type": "Thing", name: fabric.name },
-    isPartOf: { "@type": "WebSite", name: "Moksha Fabrics" },
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        name: fabric.name,
+        description: fabric.description,
+        about: { "@type": "Thing", name: fabric.name },
+        isPartOf: { "@type": "WebSite", name: "Moksha Fabrics" },
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: "https://mokshafabrics.com/" },
+          { "@type": "ListItem", position: 2, name: "Fabrics", item: "https://mokshafabrics.com/fabrics" },
+          { "@type": "ListItem", position: 3, name: fabric.name, item: `https://mokshafabrics.com/fabrics/${fabric.slug}` },
+        ],
+      },
+    ],
   };
 
   return (
     <main>
       <section className="pageHero">
         <div className="container">
-          <p className="eyebrow">Moksha Fabrics · Surat</p>
+          <p className="eyebrow"><Link href="/fabrics">Fabrics</Link> · Surat · B2B sourcing</p>
           <h1>{fabric.name}</h1>
           <p className="lead">{fabric.description}</p>
           <div className="actions"><Link className="button buttonDark" href="#enquiry">Enquire about this fabric</Link><Link className="textLink" href="/fabrics">← All fabrics</Link></div>
