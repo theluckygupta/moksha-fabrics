@@ -77,6 +77,13 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           </div>
         </footer>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organization) }} />
+        <style>{`
+          .footerNav{display:flex;gap:18px;margin-top:18px;flex-wrap:wrap;font-size:12px}
+          .footerNav a{color:#d7e6e8}
+          .footerNav a:hover{color:var(--accent)}
+          a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--accent-deep);outline-offset:3px}
+          @media(max-width:800px){.footerNav{gap:12px}}
+        `}</style>
       </body>
     </html>
   );
