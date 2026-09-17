@@ -15,6 +15,7 @@ export default function SiteHeader() {
         </Link>
         <nav className="links" aria-label="Main navigation">
           <Link href="/fabrics">Fabrics</Link>
+          <Link href="/guides">Buyer Guides</Link>
           <Link href="/about">About</Link>
           <Link href="/faq">FAQ</Link>
           <Link href="/contact">Contact</Link>
