@@ -7,6 +7,12 @@ const fabrics = [
   { no: "04", name: "Dyed Fabrics", href: "/fabrics/dyed-fabrics", text: "Solid and custom-dyed fabric options for manufacturers and fashion businesses." },
 ];
 
+const process = [
+  ["01 / REQUIREMENT", "Define the fabric", "Share the look, hand-feel, construction or reference you are trying to source."],
+  ["02 / DISCUSSION", "Match the specification", "Discuss construction, processing, width, quantity and commercial requirements."],
+  ["03 / SUPPLY", "Move to production", "Once specifications are agreed, move forward with samples, quantities and supply planning."],
+];
+
 export default function Home() {
   return (
     <main id="top">
@@ -25,7 +31,7 @@ export default function Home() {
 
       <section className="band" id="about"><div className="container band-inner"><div><div className="eyebrow">Why Surat</div><h2>At the heart of India’s textile trade.</h2><p className="lead">Surat’s textile ecosystem brings together manufacturing, processing, weaving, printing, dyeing and wholesale distribution at remarkable scale. Moksha Fabrics is built to make that sourcing relationship simpler for buyers.</p><Link className="text-link" href="/about">Learn about Moksha Fabrics →</Link></div><div className="list"><div><span>Location</span><strong>Surat, Gujarat</strong></div><div><span>Market</span><strong>India & wholesale</strong></div><div><span>Focus</span><strong>Textile fabrics</strong></div><div><span>Approach</span><strong>Specification-led</strong></div></div></div></section>
 
-      <section className="section" id="sourcing"><div className="container"><div className="section-head"><div><div className="eyebrow">B2B sourcing</div><h2>From requirement to supply.</h2></div><p>Give us the details that matter. The clearer the specification, the easier it is to identify a suitable fabric and plan the next step.</p></div><div className="grid process-grid"><article className="card"><div><div className="card-no">01 / REQUIREMENT</div><h3>Define the fabric</h3><p>Share the look, hand-feel, construction or reference you are trying to source.</p></div></article><article className="card"><div><div className="card-no">02 / DISCUSSION</div><h3>Match the specification</h3><p>Discuss construction, processing, width, quantity and commercial requirements.</p></div></article><article className="card"><div><div className="card-no">03 / SUPPLY</div><h3>Move to production</h3><p>Once specifications are agreed, move forward with samples, quantities and supply planning.</p></div></article></div></div></section>
+      <section className="section" id="sourcing"><div className="container"><div className="section-head"><div><div className="eyebrow">B2B sourcing</div><h2>From requirement to supply.</h2></div><p>Give us the details that matter. The clearer the specification, the easier it is to identify a suitable fabric and plan the next step.</p></div><div className="grid process-grid">{process.map(([label, title, text]) => <article className="card" key={label}><div><div className="card-no">{label}</div><h3>{title}</h3><p>{text}</p></div></article>)}</div></div></section>
 
       <section className="container" id="contact"><div className="cta"><div className="eyebrow">Start a conversation</div><h2>Looking for fabric from Surat?</h2><p>Send your requirement and we’ll build the next step around the fabric, quantity and application you have in mind.</p><Link className="btn" href="/contact">Send a fabric enquiry</Link></div></section>
     </main>
