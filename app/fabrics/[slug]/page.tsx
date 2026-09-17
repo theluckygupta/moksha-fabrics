@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import EnquiryForm from "@/components/enquiry-form";
 import { fabrics, getFabric } from "@/lib/fabrics";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -40,21 +41,28 @@ export default async function FabricPage({ params }: Props) {
         <p className="eyebrow">Moksha Fabrics · Surat</p>
         <h1>{fabric.name}</h1>
         <p className="lead">{fabric.description}</p>
-        <div className="actions"><Link className="button buttonDark" href="/contact">Discuss this fabric</Link><Link className="textLink" href="/fabrics">← All fabrics</Link></div>
+        <div className="actions"><Link className="button buttonDark" href="#enquiry">Enquire about this fabric</Link><Link className="textLink" href="/fabrics">← All fabrics</Link></div>
       </section>
 
       <section className="section">
         <div className="detailGrid">
           <div><p className="eyebrow">Typical application</p><h2>Built around the end use.</h2><p className="lead">{fabric.application}</p></div>
-          <div className="specPanel"><p className="eyebrow">Sourcing notes</p>{fabric.specifications.map((item) => <div className="specRow" key={item}><span>{item}</span><span>Discuss</span></div>)}</div>
+          <div className="specPanel"><p className="eyebrow">Sourcing notes</p>{fabric.specifications.map((item) => <div className="specRow" key={item}><span>{item}</span><span>{fabric.status === "Indicative specification" ? "Indicative" : "Catalogue"}</span></div>)}</div>
+        </div>
+      </section>
+
+      <section className="section" id="enquiry">
+        <div className="container enquirySection">
+          <div><p className="eyebrow">Fabric enquiry</p><h2>Request {fabric.name}.</h2><p className="lead">Tell us your quantity and requirements. We’ll take the conversation to WhatsApp so you can discuss availability, samples and exact specifications directly.</p></div>
+          <EnquiryForm fabricName={fabric.name} />
         </div>
       </section>
 
       <section className="band">
         <p className="eyebrow">Specification-led sourcing</p>
-        <h2>Have a particular construction, width, GSM, finish or quantity in mind?</h2>
-        <p className="lead">Share your requirement with Moksha Fabrics and use this category as the starting point for a more specific sourcing discussion.</p>
-        <Link className="button buttonDark" href="/contact">Start an enquiry →</Link>
+        <h2>Need a different construction, width, GSM, finish or quantity?</h2>
+        <p className="lead">Browse the catalogue or contact Moksha Fabrics for a more specific sourcing discussion.</p>
+        <Link className="button buttonDark" href="/contact">Start a general enquiry →</Link>
       </section>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
     </main>
