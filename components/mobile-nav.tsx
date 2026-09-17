@@ -21,6 +21,7 @@ export default function MobileNav() {
       {open ? (
         <nav id="mobile-navigation" className="mobileNavPanel" aria-label="Mobile navigation">
           <Link href="/fabrics" onClick={() => setOpen(false)}>Fabrics</Link>
+          <Link href="/guides" onClick={() => setOpen(false)}>Buyer Guides</Link>
           <Link href="/about" onClick={() => setOpen(false)}>About</Link>
           <Link href="/faq" onClick={() => setOpen(false)}>FAQ</Link>
           <Link href="/contact" onClick={() => setOpen(false)}>Contact</Link>
