@@ -49,7 +49,7 @@ export default async function FabricPage({ params }: Props) {
         <div className="container detailGrid">
           <div>
             <div style={{ position: "relative", minHeight: "420px", overflow: "hidden", background: "linear-gradient(145deg,#d8f1f3,#8ddce5 55%,#245967)", border: "1px solid var(--line)" }}>
-              {fabric.imageUrl ? <img src={fabric.imageUrl} alt={fabric.imageAlt || fabric.name} style={{ display: "block", position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} onError={(event) => { event.currentTarget.style.display = "none"; }} /> : null}
+              {fabric.imageUrl ? <img src={fabric.imageUrl} alt={fabric.imageAlt || fabric.name} style={{ display: "block", position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} /> : null}
               <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(23,63,75,0.04), rgba(23,63,75,0.62))" }} />
               <span style={{ position: "absolute", left: "20px", bottom: "18px", color: "white", fontSize: "10px", fontWeight: 700, letterSpacing: ".16em", textTransform: "uppercase" }}>Reference imagery</span>
             </div>
