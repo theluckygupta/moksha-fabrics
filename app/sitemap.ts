@@ -10,6 +10,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/about",
     "/faq",
     "/contact",
+    "/guides",
+    "/guides/how-to-source-fabric-wholesale-from-surat",
+    "/guides/fabric-gsm-guide",
+    "/guides/fabric-width-guide",
     "/textile-fabric-manufacturer-in-surat",
     "/fabric-supplier-in-surat",
     "/fabrics/printed-fabrics",
@@ -26,6 +30,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${baseUrl}${path}`,
     lastModified: new Date(),
     changeFrequency: "weekly",
-    priority: path === "" ? 1 : 0.8,
+    priority: path === "" ? 1 : path === "/guides" || path === "/fabrics" ? 0.9 : 0.8,
   }));
 }
