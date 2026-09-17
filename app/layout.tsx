@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import SiteHeader from "@/components/site-header";
+import WhatsAppFloat from "@/components/whatsapp-float";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -77,6 +78,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           </div>
         </footer>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organization) }} />
+        <WhatsAppFloat />
         <style>{`
           .footerNav{display:flex;gap:18px;margin-top:18px;flex-wrap:wrap;font-size:12px}
           .footerNav a{color:#d7e6e8}
