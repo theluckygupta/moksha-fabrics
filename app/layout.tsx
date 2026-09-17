@@ -3,8 +3,10 @@ import SiteHeader from "@/components/site-header";
 import WhatsAppFloat from "@/components/whatsapp-float";
 import "./globals.css";
 
+const siteUrl = "https://mokshafabrics.com";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://mokshafabrics.com"),
+  metadataBase: new URL(siteUrl),
   title: {
     default: "Moksha Fabrics | Textile Fabric Manufacturer & Supplier in Surat",
     template: "%s | Moksha Fabrics",
@@ -18,6 +20,8 @@ export const metadata: Metadata = {
     "dress material fabric supplier",
     "printed fabric supplier",
     "Surat textile market",
+    "wholesale fabric supplier Surat",
+    "fabric manufacturer Gujarat",
   ],
   alternates: { canonical: "/" },
   openGraph: {
@@ -26,32 +30,51 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_IN",
     siteName: "Moksha Fabrics",
+    url: siteUrl,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Moksha Fabrics | Surat Textile Fabric Manufacturer & Supplier",
+    description: "Source textile fabrics from Surat with Moksha Fabrics.",
   },
   robots: { index: true, follow: true },
 };
 
 const organization = {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  name: "Moksha Fabrics",
-  url: "https://mokshafabrics.com",
-  email: "mokshafabrics.mf@gmail.com",
-  telephone: "+91 97831 23977",
-  description: "Textile fabric manufacturer and supplier based in Surat, Gujarat, India.",
-  areaServed: "India",
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "I/2657-58, Radha Krishna Textile Market, Ring Road",
-    addressLocality: "Surat",
-    postalCode: "395002",
-    addressRegion: "Gujarat",
-    addressCountry: "IN",
-  },
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${siteUrl}/#organization`,
+      name: "Moksha Fabrics",
+      url: siteUrl,
+      email: "mokshafabrics.mf@gmail.com",
+      telephone: "+91 97831 23977",
+      description: "Textile fabric manufacturer and supplier based in Surat, Gujarat, India.",
+      areaServed: "India",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "I/2657-58, Radha Krishna Textile Market, Ring Road",
+        addressLocality: "Surat",
+        postalCode: "395002",
+        addressRegion: "Gujarat",
+        addressCountry: "IN",
+      },
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      name: "Moksha Fabrics",
+      url: siteUrl,
+      publisher: { "@id": `${siteUrl}/#organization` },
+      inLanguage: "en-IN",
+    },
+  ],
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
+    <html lang="en-IN">
       <body>
         <SiteHeader />
         {children}
