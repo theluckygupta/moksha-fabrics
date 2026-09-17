@@ -38,14 +38,19 @@ export default function FabricCatalogue({ fabrics }: { fabrics: Fabric[] }) {
         </div>
       </div>
 
-      <div className="catalogueCount"><span>{filtered.length} {filtered.length === 1 ? "quality" : "qualities"}</span><span>Specifications confirmed per lot before order</span></div>
+      <div className="catalogueCount"><span>{filtered.length} {filtered.length === 1 ? "quality" : "qualities"}</span><span>Demo imagery · Replace with actual Moksha Fabrics photography</span></div>
 
       <div className="productGrid">
         {filtered.map((fabric, index) => {
           const whatsappText = `Hello Moksha Fabrics, I would like to enquire about ${fabric.name}. Please share availability, exact specifications and pricing.`;
           return (
             <article className="productCard" key={fabric.slug}>
-              <div className="productVisual" aria-hidden="true"><span>{String(index + 1).padStart(2, "0")}</span><strong>{fabric.name}</strong></div>
+              <div className="productVisual">
+                {fabric.imageUrl ? <img src={fabric.imageUrl} alt={fabric.imageAlt || fabric.name} loading="lazy" /> : null}
+                <div className="productVisualShade" aria-hidden="true" />
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <strong>{fabric.name}</strong>
+              </div>
               <div className="productBody">
                 <p className="productCategory">{fabric.category}</p>
                 <h2>{fabric.name}</h2>
