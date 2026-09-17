@@ -15,8 +15,8 @@ export async function generateMetadata({ params }: Props) {
   if (!fabric) return {};
   return {
     title: `${fabric.name} from Surat`,
-    description: `${fabric.description} Explore sourcing information and specifications from Moksha Fabrics, Surat.`,
-    alternates: { canonical: `https://mokshafabrics.com/fabrics/${fabric.slug}` },
+    description: `${fabric.description} Explore sourcing information and indicative specifications from Moksha Fabrics, Surat.`,
+    alternates: { canonical: `/fabrics/${fabric.slug}` },
   };
 }
 
@@ -30,27 +30,29 @@ export default async function FabricPage({ params }: Props) {
     "@type": "CollectionPage",
     name: fabric.name,
     description: fabric.description,
-    url: `https://mokshafabrics.com/fabrics/${fabric.slug}`,
     about: { "@type": "Thing", name: fabric.name },
-    isPartOf: { "@type": "WebSite", name: "Moksha Fabrics", url: "https://mokshafabrics.com" },
+    isPartOf: { "@type": "WebSite", name: "Moksha Fabrics" },
   };
 
   return (
     <main>
       <section className="pageHero">
-        <p className="eyebrow">Moksha Fabrics · Surat</p>
-        <h1>{fabric.name}</h1>
-        <p className="lead">{fabric.description}</p>
-        <div className="actions"><Link className="button buttonDark" href="#enquiry">Enquire about this fabric</Link><Link className="textLink" href="/fabrics">← All fabrics</Link></div>
+        <div className="container">
+          <p className="eyebrow">Moksha Fabrics · Surat</p>
+          <h1>{fabric.name}</h1>
+          <p className="lead">{fabric.description}</p>
+          <div className="actions"><Link className="button buttonDark" href="#enquiry">Enquire about this fabric</Link><Link className="textLink" href="/fabrics">← All fabrics</Link></div>
+        </div>
       </section>
 
       <section className="section">
         <div className="container detailGrid">
           <div>
-            {fabric.imageUrl ? (
-              <img src={fabric.imageUrl} alt={fabric.imageAlt || fabric.name} style={{ display: "block", width: "100%", height: "420px", objectFit: "cover", background: "#e7f7f8" }} />
-            ) : null}
-            <p className="mutedSmall" style={{ marginTop: "10px" }}>Demo/reference image — replace with actual Moksha Fabrics photography.</p>
+            <div className="detailImageFrame">
+              {fabric.imageUrl ? <img src={fabric.imageUrl} alt={fabric.imageAlt || fabric.name} className="detailImage" onError={(event) => { event.currentTarget.style.display = "none"; }} /> : null}
+              <span className="detailImageLabel">Reference imagery</span>
+            </div>
+            <p className="mutedSmall" style={{ marginTop: "10px" }}>Demo/reference image — replace with actual Moksha Fabrics photography before publication as a product image.</p>
           </div>
           <div>
             <p className="eyebrow">Typical application</p>
@@ -71,12 +73,7 @@ export default async function FabricPage({ params }: Props) {
         </div>
       </section>
 
-      <section className="band">
-        <p className="eyebrow">Specification-led sourcing</p>
-        <h2>Need a different construction, width, GSM, finish or quantity?</h2>
-        <p className="lead">Browse the catalogue or contact Moksha Fabrics for a more specific sourcing discussion.</p>
-        <Link className="button buttonDark" href="/contact">Start a general enquiry →</Link>
-      </section>
+      <section className="band"><div className="container band-inner"><div><p className="eyebrow">Specification-led sourcing</p><h2>Need a different construction, width, GSM, finish or quantity?</h2><p className="lead">Browse the catalogue or contact Moksha Fabrics for a more specific sourcing discussion.</p><Link className="button buttonDark" href="/contact">Start a general enquiry →</Link></div><div className="list"><div><span>Fabric</span><strong>{fabric.name}</strong></div><div><span>Category</span><strong>{fabric.category}</strong></div><div><span>Application</span><strong>{fabric.application}</strong></div></div></div></section>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
     </main>
   );
