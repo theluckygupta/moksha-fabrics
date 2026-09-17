@@ -85,6 +85,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
               <span>Textile fabrics · Surat, Gujarat, India</span>
               <nav className="footerNav" aria-label="Footer navigation">
                 <a href="/fabrics">Fabrics</a>
+                <a href="/guides">Buyer Guides</a>
                 <a href="/about">About</a>
                 <a href="/faq">FAQ</a>
                 <a href="/contact">Contact</a>
