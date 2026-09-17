@@ -19,7 +19,7 @@ export default function FabricCatalogue({ fabrics }: { fabrics: Fabric[] }) {
     const normalized = query.trim().toLowerCase();
     return fabrics.filter((fabric) => {
       const matchesCategory = category === "All" || fabric.category === category;
-      const searchable = `${fabric.name} ${fabric.category} ${fabric.description} ${fabric.application}`.toLowerCase();
+      const searchable = `${fabric.name} ${fabric.category} ${fabric.description} ${fabric.application} ${fabric.specifications.join(" ")}`.toLowerCase();
       return matchesCategory && (!normalized || searchable.includes(normalized));
     });
   }, [category, fabrics, query]);
@@ -33,12 +33,12 @@ export default function FabricCatalogue({ fabrics }: { fabrics: Fabric[] }) {
         </label>
         <div className="filterList" role="group" aria-label="Filter by category">
           {categories.map((item) => (
-            <button className={category === item ? "filterButton active" : "filterButton"} key={item} onClick={() => setCategory(item)} type="button">{item}</button>
+            <button className={category === item ? "filterButton active" : "filterButton"} key={item} onClick={() => setCategory(item)} type="button" aria-pressed={category === item}>{item}</button>
           ))}
         </div>
       </div>
 
-      <div className="catalogueCount"><span>{filtered.length} {filtered.length === 1 ? "quality" : "qualities"}</span><span>Demo imagery · Replace with actual Moksha Fabrics photography</span></div>
+      <div className="catalogueCount" aria-live="polite"><span>{filtered.length} {filtered.length === 1 ? "quality" : "qualities"}</span><span>Demo imagery · Replace with actual Moksha Fabrics photography</span></div>
 
       <div className="productGrid">
         {filtered.map((fabric, index) => {
@@ -46,7 +46,7 @@ export default function FabricCatalogue({ fabrics }: { fabrics: Fabric[] }) {
           return (
             <article className="productCard" key={fabric.slug}>
               <div className="productVisual">
-                {fabric.imageUrl ? <img className="productImage" src={fabric.imageUrl} alt={fabric.imageAlt || fabric.name} loading="lazy" /> : null}
+                {fabric.imageUrl ? <img className="productImage" src={fabric.imageUrl} alt={fabric.imageAlt || fabric.name} loading="lazy" onError={(event) => { event.currentTarget.style.display = "none"; }} /> : null}
                 {fabric.imageUrl ? <div className="productVisualShade" aria-hidden="true" /> : null}
                 <span>{String(index + 1).padStart(2, "0")}</span>
                 <strong>{fabric.name}</strong>
