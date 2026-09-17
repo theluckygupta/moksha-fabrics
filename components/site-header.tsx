@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 export default function SiteHeader() {
@@ -5,7 +6,7 @@ export default function SiteHeader() {
     <header className="siteHeader">
       <div className="container nav">
         <Link className="brand" href="/" aria-label="Moksha Fabrics home">
-          <span className="brandMark">MF</span>
+          <Image className="brandLogo" src="/logo.svg" alt="Moksha Fabrics" width={48} height={48} priority />
           <span className="brandText">
             <strong>Moksha Fabrics</strong>
             <small>Textiles · Surat</small>
