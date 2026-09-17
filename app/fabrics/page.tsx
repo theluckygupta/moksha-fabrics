@@ -1,15 +1,9 @@
 import Link from "next/link";
-
-const categories = [
-  ["Printed Fabrics", "Printed textile fabrics for fashion, garment and wholesale applications.", "/fabrics/printed-fabrics"],
-  ["Dress Material Fabrics", "Fabric options suited to dress materials, ethnicwear and fashion collections.", "/fabrics/dress-material-fabrics"],
-  ["Synthetic & Blended", "Synthetic and blended constructions selected for practical fashion applications.", "/fabrics/synthetic-blended-fabrics"],
-  ["Dyed Fabrics", "Dyed textile fabrics for buyers looking for consistent colour and flexible sourcing.", "/fabrics/dyed-fabrics"],
-];
+import { fabricCategories } from "@/data/fabrics";
 
 export const metadata = {
-  title: "Fabrics",
-  description: "Explore Moksha Fabrics' textile fabric categories from Surat, Gujarat, for wholesalers, garment manufacturers, boutiques and fashion businesses.",
+  title: "Fabric Catalogue",
+  description: "Explore textile fabric categories from Moksha Fabrics in Surat, Gujarat, for wholesalers, garment manufacturers, boutiques and fashion businesses.",
 };
 
 export default function FabricsPage() {
@@ -18,15 +12,16 @@ export default function FabricsPage() {
       <section className="pageHero">
         <p className="eyebrow">Fabric catalogue · Surat</p>
         <h1>Textile fabrics for fashion businesses.</h1>
-        <p className="lead">Browse our core fabric categories and use them as a starting point for sourcing, sampling and product development.</p>
+        <p className="lead">Browse core fabric categories for sourcing, sampling, garment production and wholesale requirements.</p>
       </section>
       <section className="section">
         <div className="cardGrid">
-          {categories.map(([title, description, href]) => (
-            <Link className="card" href={href} key={href}>
-              <span className="cardIndex">0{categories.findIndex((item) => item[2] === href) + 1}</span>
-              <h2>{title}</h2>
-              <p>{description}</p>
+          {fabricCategories.map((category, index) => (
+            <Link className="card" href={`/fabrics/${category.slug}`} key={category.slug}>
+              <span className="cardIndex">{String(index + 1).padStart(2, "0")}</span>
+              <h2>{category.name}</h2>
+              <p>{category.shortDescription}</p>
+              <p className="mutedSmall">{category.buyerUse}</p>
               <span className="textLink">Explore category →</span>
             </Link>
           ))}
