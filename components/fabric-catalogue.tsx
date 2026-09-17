@@ -46,8 +46,8 @@ export default function FabricCatalogue({ fabrics }: { fabrics: Fabric[] }) {
           return (
             <article className="productCard" key={fabric.slug}>
               <div className="productVisual">
-                {fabric.imageUrl ? <img src={fabric.imageUrl} alt={fabric.imageAlt || fabric.name} loading="lazy" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} /> : null}
-                <div className="productVisualShade" aria-hidden="true" style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(23,63,75,.04) 25%, rgba(23,63,75,.72) 100%)" }} />
+                {fabric.imageUrl ? <img className="productImage" src={fabric.imageUrl} alt={fabric.imageAlt || fabric.name} loading="lazy" /> : null}
+                {fabric.imageUrl ? <div className="productVisualShade" aria-hidden="true" /> : null}
                 <span>{String(index + 1).padStart(2, "0")}</span>
                 <strong>{fabric.name}</strong>
               </div>
@@ -59,7 +59,7 @@ export default function FabricCatalogue({ fabrics }: { fabrics: Fabric[] }) {
                 <div className="productTags">{fabric.specifications.slice(0, 3).map((specification) => <span key={specification}>{specification}</span>)}</div>
                 <div className="productActions">
                   <Link className="productLink" href={`/fabrics/${fabric.slug}`}>View details <span>↗</span></Link>
-                  <a className="whatsappLink" href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappText)}`} target="_blank" rel="noreferrer">WhatsApp enquiry</a>
+                  <a className="whatsappLink" href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappText)}`} target="_blank" rel="noopener noreferrer">WhatsApp enquiry</a>
                 </div>
               </div>
             </article>
